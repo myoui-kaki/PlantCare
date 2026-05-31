@@ -1,0 +1,723 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, viewport-fit=cover" />
+  <meta name="theme-color" content="#2d6a4f" id="meta-theme-color" />
+  <meta name="description" content="Plant Care Reminder App - Track watering, fertilizing and maintenance" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="PlantCare" />
+  <meta name="application-name" content="PlantCare" />
+  <meta name="msapplication-TileColor" content="#2d6a4f" />
+  <meta name="msapplication-tap-highlight" content="no" />
+  <!-- iOS home screen icons -->
+  <link rel="apple-touch-icon" href="icons/icon-192.svg" />
+  <link rel="apple-touch-icon" sizes="192x192" href="icons/icon-192.svg" />
+  <link rel="apple-touch-icon" sizes="512x512" href="icons/icon-512.svg" />
+  <title>PlantCare — Plant Reminder App</title>
+  <link rel="manifest" href="manifest.json" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="main.css" />
+  <link rel="stylesheet" href="components.css" />
+  <link rel="stylesheet" href="animations.css" />
+  <link rel="stylesheet" href="additions.css" />
+</head>
+<body class="is-auth">
+  <div id="offline-banner" class="offline-banner hidden"><span>📡 You're offline — showing cached data</span></div>
+
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-logo">
+        <div class="logo-leaf">🌿</div>
+        <span class="logo-text">PlantCare</span>
+      </div>
+      <nav class="sidebar-nav">
+        <a href="#" class="nav-item active" data-page="dashboard"><span class="nav-icon">🏡</span><span>Dashboard</span></a>
+        <a href="#" class="nav-item" data-page="plants"><span class="nav-icon">🪴</span><span>My Plants</span></a>
+        <a href="#" class="nav-item" data-page="schedule"><span class="nav-icon">📅</span><span>Schedule</span></a>
+        <a href="#" class="nav-item" data-page="doctor"><span class="nav-icon">🩺</span><span>Plant Doctor</span></a>
+        <a href="#" class="nav-item" data-page="tips"><span class="nav-icon">📚</span><span>Care Tips</span></a>
+        <a href="#" class="nav-item" data-page="reminders"><span class="nav-icon">🔔</span><span>Reminders</span></a>
+        <a href="#" class="nav-item" data-page="analytics"><span class="nav-icon">📊</span><span>Analytics</span></a>
+        <a href="#" class="nav-item" data-page="mlpredict"><span class="nav-icon">🤖</span><span>AI Health</span></a>
+      </nav>
+      <div class="sidebar-footer">
+        <a href="#" class="nav-item" data-page="profile"><span class="nav-icon">👤</span><span>Profile</span></a>
+      </div>
+    </aside>
+
+    <main class="main-content" id="main-content">
+
+      <!-- BACK BUTTON (shown on all app pages except dashboard) -->
+
+
+      <!-- LOGIN -->
+      <section class="page active" id="page-login">
+        <div class="auth-wrapper">
+          <div class="auth-art">
+            <div class="art-circle"></div>
+            <div class="art-leaves">🌿🍃🌱🪴🌾</div>
+            <h2 class="art-headline">Nurture.<br/>Grow.<br/>Thrive.</h2>
+          </div>
+          <div class="auth-form-wrap">
+            <div class="auth-form-inner">
+              <div class="auth-logo">🌿 PlantCare</div>
+              <h1 class="auth-title">Welcome back</h1>
+              <p class="auth-subtitle">Sign in to your garden</p>
+              <div class="form-group">
+                <label class="form-label">Email</label>
+                <input type="email" id="login-email" class="form-input" placeholder="you@garden.com" autocomplete="email"/>
+              </div>
+              <div class="form-group">
+                <div class="form-label-row">
+                  <label class="form-label">Password</label>
+                  <a href="#" class="form-label-link" id="go-forgot">Forgot password?</a>
+                </div>
+                <div class="pw-input-wrap">
+                  <input type="password" id="login-password" class="form-input" placeholder="••••••••" autocomplete="current-password"/>
+                  <button type="button" class="pw-toggle" id="login-pw-toggle" aria-label="Show password"></button>
+                </div>
+              </div>
+              <div id="login-error" class="form-error hidden"></div>
+              <button class="btn btn-primary btn-full" id="login-btn">Sign In</button>
+              <p class="auth-switch">Don't have an account? <a href="#" id="go-register">Create one</a></p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- REGISTER -->
+      <section class="page" id="page-register">
+        <div class="auth-wrapper">
+          <div class="auth-art">
+            <div class="art-circle"></div>
+            <div class="art-leaves">🌱🌿🍀🪴🌺</div>
+            <h2 class="art-headline">Start your<br/>green<br/>journey.</h2>
+          </div>
+          <div class="auth-form-wrap">
+            <div class="auth-form-inner">
+              <div class="auth-logo">🌿 PlantCare</div>
+              <h1 class="auth-title">Create account</h1>
+              <p class="auth-subtitle">Join the plant lovers community</p>
+              <div class="form-group">
+                <label class="form-label">Full Name</label>
+                <input type="text" id="reg-name" class="form-input" placeholder="Your name" autocomplete="name"/>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Email</label>
+                <input type="email" id="reg-email" class="form-input" placeholder="you@garden.com" autocomplete="email"/>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Password</label>
+                <div class="pw-input-wrap">
+                  <input type="password" id="reg-password" class="form-input" placeholder="Create a strong password" autocomplete="new-password"/>
+                  <button type="button" class="pw-toggle" id="reg-pw-toggle" aria-label="Show password"></button>
+                </div>
+                <div class="pw-strength-row">
+                  <div class="pw-strength-bar"><div class="pw-strength-fill" id="pw-strength-fill"></div></div>
+                  <span class="pw-strength-label" id="pw-strength-label"></span>
+                </div>
+                <div class="pw-rules" id="pw-rules">
+                  <span id="rule-len"   class="pw-rule">8+ chars</span>
+                  <span id="rule-upper" class="pw-rule">A–Z upper</span>
+                  <span id="rule-lower" class="pw-rule">a–z lower</span>
+                  <span id="rule-num"   class="pw-rule">0–9 digit</span>
+                  <span id="rule-sym"   class="pw-rule">!@#$ symbol</span>
+                  <span id="rule-long"  class="pw-rule pw-rule--bonus">12+ <em>bonus</em></span>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Confirm Password</label>
+                <div class="pw-input-wrap">
+                  <input type="password" id="reg-password-confirm" class="form-input" placeholder="Re-enter your password" autocomplete="new-password"/>
+                  <button type="button" class="pw-toggle" id="reg-pw-confirm-toggle" aria-label="Show password"></button>
+                </div>
+              </div>
+              <div id="reg-error" class="form-error hidden"></div>
+              <button class="btn btn-primary btn-full" id="register-btn">Create Account</button>
+              <p class="auth-switch">Already have an account? <a href="#" id="go-login">Sign in</a></p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- FORGOT PASSWORD -->
+      <section class="page" id="page-forgot">
+        <div class="auth-wrapper">
+          <div class="auth-art">
+            <div class="art-circle"></div>
+            <div class="art-leaves">🔑🌿🌱🍃🌾</div>
+            <h2 class="art-headline">Recover<br/>your<br/>garden.</h2>
+          </div>
+          <div class="auth-form-wrap">
+            <div class="auth-form-inner">
+              <div class="auth-logo">🌿 PlantCare</div>
+              <h1 class="auth-title">Forgot password?</h1>
+              <p class="auth-subtitle">Enter your email and we'll send a reset link</p>
+              <div id="forgot-form-area">
+                <div class="form-group">
+                  <label class="form-label">Email address</label>
+                  <input type="email" id="forgot-email" class="form-input" placeholder="you@garden.com" autocomplete="email"/>
+                </div>
+                <div id="forgot-error" class="form-error hidden"></div>
+                <button class="btn btn-primary btn-full" id="forgot-btn">Send Reset Link</button>
+                <p class="auth-switch"><a href="#" class="go-login-from-forgot">← Back to Sign In</a></p>
+              </div>
+              <div id="forgot-success-area" class="hidden">
+                <div class="auth-success-box">
+                  <div class="auth-success-icon">📬</div>
+                  <h3>Check your Gmail!</h3>
+                  <p>We sent a reset link to:<br/><strong id="forgot-email-shown"></strong><br/><span style="font-size:.82rem;color:var(--text-muted)">Link expires in 15 minutes.</span></p>
+                  <p style="margin-top:14px;font-size:.82rem;color:var(--text-muted);text-align:center;line-height:1.6;">Open your Gmail inbox and click the reset link in the email to set a new password.</p>
+                </div>
+                <p class="auth-switch"><a href="#" class="go-login-from-forgot">← Back to Sign In</a></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- RESET PASSWORD -->
+      <section class="page" id="page-reset">
+        <div class="auth-wrapper">
+          <div class="auth-art">
+            <div class="art-circle"></div>
+            <div class="art-leaves">🔒🌿🌱🍃🌾</div>
+            <h2 class="art-headline">New<br/>password,<br/>fresh start.</h2>
+          </div>
+          <div class="auth-form-wrap">
+            <div class="auth-form-inner">
+              <div class="auth-logo">🌿 PlantCare</div>
+              <h1 class="auth-title">Reset password</h1>
+              <p class="auth-subtitle">Choose a strong new password</p>
+              <div id="reset-form-area">
+                <input type="hidden" id="reset-email-input"/>
+                <input type="hidden" id="reset-token-input"/>
+                <div class="form-group">
+                  <label class="form-label">New Password</label>
+                  <div class="pw-input-wrap">
+                    <input type="password" id="reset-password" class="form-input" placeholder="Create a strong password" autocomplete="new-password"/>
+                    <button type="button" class="pw-toggle" id="reset-pw-toggle" aria-label="Show password"></button>
+                  </div>
+                  <div class="pw-strength-row">
+                    <div class="pw-strength-bar"><div class="pw-strength-fill" id="reset-strength-fill"></div></div>
+                    <span class="pw-strength-label" id="reset-strength-label"></span>
+                  </div>
+                  <div class="pw-rules">
+                    <span id="r2-len"   class="pw-rule">8+ chars</span>
+                    <span id="r2-upper" class="pw-rule">A–Z upper</span>
+                    <span id="r2-lower" class="pw-rule">a–z lower</span>
+                    <span id="r2-num"   class="pw-rule">0–9 digit</span>
+                    <span id="r2-sym"   class="pw-rule">!@#$ symbol</span>
+                    <span id="r2-long"  class="pw-rule pw-rule--bonus">12+ <em>bonus</em></span>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="form-label">Confirm New Password</label>
+                  <div class="pw-input-wrap">
+                    <input type="password" id="reset-password-confirm" class="form-input" placeholder="Re-enter new password" autocomplete="new-password"/>
+                    <button type="button" class="pw-toggle" id="reset-pw-confirm-toggle" aria-label="Show password"></button>
+                  </div>
+                </div>
+                <div id="reset-error" class="form-error hidden"></div>
+                <button class="btn btn-primary btn-full" id="reset-btn">Update Password</button>
+              </div>
+              <div id="reset-success-area" class="hidden">
+                <div class="auth-success-box">
+                  <div class="auth-success-icon">✅</div>
+                  <h3>Password updated!</h3>
+                  <p>Your password has been changed successfully.<br/>Redirecting you to Sign In…</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- DASHBOARD -->
+      <section class="page" id="page-dashboard">
+        <div class="page-header">
+          <div><h1 class="page-title" id="greeting-text">Good morning 🌤️</h1><p class="page-subtitle" id="user-display-name">Loading your garden…</p></div>
+          <button class="btn btn-outline" id="add-plant-quick">+ Add Plant</button>
+        </div>
+        <div class="xp-banner" id="xp-banner">
+          <div class="xp-left">
+            <span class="xp-level" id="xp-level-badge">Lv.1</span>
+            <div class="xp-info">
+              <span class="xp-title" id="xp-title-text">Seedling</span>
+              <div class="xp-bar-wrap"><div class="xp-bar-fill" id="xp-bar-fill" style="width:0%"></div></div>
+            </div>
+          </div>
+          <span class="xp-points" id="xp-points-text">0 XP</span>
+        </div>
+        <div class="stats-row">
+          <div class="stat-card"><div class="stat-icon">🪴</div><div class="stat-info"><span class="stat-value" id="stat-total">0</span><span class="stat-label">Total Plants</span></div></div>
+          <div class="stat-card stat-card--warn"><div class="stat-icon">💧</div><div class="stat-info"><span class="stat-value" id="stat-water">0</span><span class="stat-label">Need Water</span></div></div>
+          <div class="stat-card stat-card--ok"><div class="stat-icon">🔥</div><div class="stat-info"><span class="stat-value" id="stat-streak">0</span><span class="stat-label">Day Streak</span></div></div>
+        </div>
+        <div class="weather-widget" id="weather-widget">
+          <div class="weather-icon" id="weather-icon">🌤️</div>
+          <div class="weather-info"><span class="weather-label" id="weather-label">San Pablo City, Laguna…</span><span class="weather-tip" id="weather-tip">Fetching live weather</span></div>
+          <span class="weather-badge">Smart</span>
+        </div>
+        <div class="section-header"><h2 class="section-title">Today's Tasks</h2><span class="badge" id="tasks-badge">0 pending</span></div>
+        <div class="tasks-list" id="today-tasks"><div class="empty-state"><div class="empty-icon">🎉</div><p>All caught up! No tasks today.</p></div></div>
+        <div class="section-header"><h2 class="section-title">🏅 Recent Badges</h2><a href="#" class="link-text" data-page="profile">See all →</a></div>
+        <div class="badges-strip" id="dashboard-badges"><p class="no-badges-msg">Complete tasks to earn badges! 🏅</p></div>
+        <div class="section-header"><h2 class="section-title">My Plants</h2><a href="#" class="link-text" data-page="plants">View all →</a></div>
+        <div class="plants-grid" id="dashboard-plants-grid"><div class="empty-state"><div class="empty-icon">🌱</div><p>No plants yet. <a href="#" data-page="plants">Add your first plant!</a></p></div></div>
+      </section>
+
+      <!-- MY PLANTS -->
+      <section class="page" id="page-plants">
+        <div class="page-header">
+          <div><h1 class="page-title">My Plants</h1><p class="page-subtitle" id="plants-count-text">Loading…</p></div>
+          <button class="btn btn-primary" id="open-add-plant">+ Add Plant</button>
+        </div>
+        <div class="search-row">
+          <input type="text" id="plant-search" class="form-input search-input" placeholder="🔍  Search plants…" />
+          <select id="plant-filter" class="form-input filter-select">
+            <option value="all">All Plants</option>
+            <option value="needs_water">Needs Water</option>
+            <option value="healthy">Healthy</option>
+          </select>
+        </div>
+        <div class="plants-grid" id="plants-grid"><div class="empty-state"><div class="empty-icon">🌱</div><p>No plants yet. Add your first one!</p></div></div>
+      </section>
+
+      <!-- SCHEDULE -->
+      <section class="page" id="page-schedule">
+        <div class="page-header">
+          <div><h1 class="page-title">Schedule</h1><p class="page-subtitle">Color-coded care calendar</p></div>
+          <div class="schedule-legend">
+            <span class="legend-dot legend-water"></span><span>Water</span>
+            <span class="legend-dot legend-fert"></span><span>Fertilize</span>
+          </div>
+        </div>
+        <div class="month-nav">
+          <button class="btn-icon" id="prev-week">‹</button>
+          <span class="month-label" id="month-label"></span>
+          <button class="btn-icon" id="next-week">›</button>
+        </div>
+        <div class="calendar-strip" id="calendar-strip"></div>
+        <div class="view-toggle">
+          <button class="vtoggle-btn active" data-view="list">☰ List</button>
+          <button class="vtoggle-btn" data-view="board">⊞ Board</button>
+        </div>
+        <div class="schedule-list" id="schedule-list"><div class="empty-state"><div class="empty-icon">📅</div><p>No tasks for this day.</p></div></div>
+      </section>
+
+      <!-- PLANT DOCTOR -->
+      <section class="page" id="page-doctor">
+        <div class="page-header">
+          <div><h1 class="page-title">🩺 Plant Doctor</h1><p class="page-subtitle">Rule-based symptom checker & advisor</p></div>
+        </div>
+        <div class="doctor-layout">
+          <div class="doctor-card">
+            <div class="doctor-step-num">Step 1</div>
+            <h3 class="doctor-step-title">Upload a Photo <span class="optional-label">(optional)</span></h3>
+            <div class="photo-upload-zone" id="photo-upload-zone">
+              <div class="photo-placeholder" id="photo-placeholder">
+                <span class="photo-icon">📸</span>
+                <p>Tap to upload plant photo</p>
+                <span class="photo-hint">JPG, PNG supported</span>
+              </div>
+              <img class="photo-preview hidden" id="photo-preview" alt="Plant preview" />
+              <input type="file" id="photo-input" accept="image/*" class="hidden" />
+            </div>
+          </div>
+          <div class="doctor-card">
+            <div class="doctor-step-num">Step 2</div>
+            <h3 class="doctor-step-title">Select Symptoms</h3>
+            <div class="symptoms-grid" id="symptoms-grid">
+              <label class="symptom-chip"><input type="checkbox" value="yellow_leaves"/><span>🍂 Yellow Leaves</span></label>
+              <label class="symptom-chip"><input type="checkbox" value="brown_tips"/><span>🟤 Brown Tips</span></label>
+              <label class="symptom-chip"><input type="checkbox" value="spots"/><span>🔴 Spots / Mold</span></label>
+              <label class="symptom-chip"><input type="checkbox" value="wilting"/><span>😔 Wilting</span></label>
+              <label class="symptom-chip"><input type="checkbox" value="dry_soil"/><span>🏜️ Dry Soil</span></label>
+              <label class="symptom-chip"><input type="checkbox" value="soggy_soil"/><span>💦 Soggy Soil</span></label>
+              <label class="symptom-chip"><input type="checkbox" value="dropping_leaves"/><span>🍃 Dropping Leaves</span></label>
+              <label class="symptom-chip"><input type="checkbox" value="pale_color"/><span>🌫️ Pale / Faded</span></label>
+              <label class="symptom-chip"><input type="checkbox" value="sticky_residue"/><span>🐛 Sticky / Bugs</span></label>
+              <label class="symptom-chip"><input type="checkbox" value="no_growth"/><span>⏸️ Not Growing</span></label>
+              <label class="symptom-chip"><input type="checkbox" value="root_rot"/><span>🦠 Root Rot Signs</span></label>
+              <label class="symptom-chip"><input type="checkbox" value="leggy"/><span>📏 Leggy / Stretched</span></label>
+            </div>
+          </div>
+          <div class="doctor-card">
+            <div class="doctor-step-num">Step 3</div>
+            <h3 class="doctor-step-title">Quick Context</h3>
+            <div class="form-row">
+              <div class="form-group"><label class="form-label">Light Level</label><select id="diag-light" class="form-input"><option value="low">Low / Shade</option><option value="medium" selected>Medium / Indirect</option><option value="high">High / Direct Sun</option></select></div>
+              <div class="form-group"><label class="form-label">Watering Habit</label><select id="diag-water" class="form-input"><option value="over">Overwatering</option><option value="regular" selected>Regular</option><option value="under">Underwatering</option></select></div>
+            </div>
+            <div class="form-group"><label class="form-label">Plant name (optional)</label><input type="text" id="diag-plant-name" class="form-input" placeholder="e.g. Pothos, Snake Plant" /></div>
+            <button class="btn btn-primary btn-full" id="run-diagnosis-btn">🔍 Diagnose My Plant</button>
+          </div>
+          <div class="doctor-results hidden" id="doctor-results">
+            <div class="results-header">
+              <span class="results-sev-icon" id="results-icon">🔬</span>
+              <div><h3 class="results-title" id="results-title">Diagnosis Results</h3><p class="results-subtitle" id="results-subtitle"></p></div>
+            </div>
+            <div class="diagnosis-list" id="diagnosis-list"></div>
+            <button class="btn btn-outline mt-lg" id="reset-doctor-btn">← New Diagnosis</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- CARE TIPS -->
+      <section class="page" id="page-tips">
+        <div class="page-header"><div><h1 class="page-title">📚 Care Tips</h1><p class="page-subtitle">Knowledge hub for plant lovers</p></div></div>
+        <div class="tips-tabs" id="tips-tabs">
+          <button class="tips-tab active" data-tab="beginners">🌱 Beginners</button>
+          <button class="tips-tab" data-tab="top10">🏆 Top 10</button>
+          <button class="tips-tab" data-tab="mistakes">❌ Mistakes</button>
+          <button class="tips-tab" data-tab="seasonal">🌦️ Seasonal</button>
+        </div>
+        <div class="tips-content active" id="tab-beginners">
+          <div class="tips-hero"><div class="tips-hero-icon">🌱</div><h2>Tips for Beginners</h2><p>Essential practices for new plant parents</p></div>
+          <div class="tips-grid" id="tips-beginners-grid"></div>
+        </div>
+        <div class="tips-content" id="tab-top10">
+          <div class="tips-hero"><div class="tips-hero-icon">🏆</div><h2>Top 10 Indoor Plants</h2><p>Perfect for beginners and busy people</p></div>
+          <div class="top10-list" id="top10-list"></div>
+        </div>
+        <div class="tips-content" id="tab-mistakes">
+          <div class="tips-hero"><div class="tips-hero-icon">❌</div><h2>Common Mistakes</h2><p>Avoid these pitfalls that kill most houseplants</p></div>
+          <div class="tips-grid" id="tips-mistakes-grid"></div>
+        </div>
+        <div class="tips-content" id="tab-seasonal">
+          <div class="tips-hero"><div class="tips-hero-icon">🌦️</div><h2>Seasonal Care Guide</h2><p>Adapt your care throughout the year</p></div>
+          <div class="seasonal-grid" id="seasonal-grid"></div>
+        </div>
+      </section>
+
+      <!-- REMINDERS -->
+      <section class="page" id="page-reminders">
+        <div class="page-header"><div><h1 class="page-title">Reminders</h1><p class="page-subtitle">Smart notification settings</p></div></div>
+        <div class="notif-panel" id="notif-panel">
+          <div class="notif-panel-header"><span class="notif-panel-icon">🔔</span><div><strong>Active Reminders</strong><p id="notif-panel-count">No active reminders</p></div></div>
+          <div class="active-notifs" id="active-notifs"></div>
+        </div>
+        <div class="reminders-settings">
+          <div class="setting-card"><div class="setting-info"><h3>Push Notifications</h3><p>Get alerted when plants need care</p></div><label class="toggle-switch"><input type="checkbox" id="notif-toggle" /><span class="toggle-slider"></span></label></div>
+          <div class="setting-card"><div class="setting-info"><h3>Daily Reminder Time</h3><p>Set your preferred reminder time</p></div><input type="time" id="reminder-time" class="form-input time-input" value="08:00" /></div>
+          <div class="setting-card"><div class="setting-info"><h3>Snooze Duration</h3><p>How long to delay snoozed alerts</p></div><select id="snooze-duration" class="form-input" style="width:130px"><option value="15">15 min</option><option value="30" selected>30 min</option><option value="60">1 hour</option><option value="120">2 hours</option></select></div>
+          <div class="setting-card"><div class="setting-info"><h3>Reminder Sound</h3><p>Choose your notification sound</p></div><div style="display:flex;gap:8px;align-items:center"><select id="reminder-sound" class="form-input" style="width:130px"><option value="chime">🎵 Chime</option><option value="drop">💧 Water Drop</option><option value="nature">🌿 Nature</option><option value="bell">🔔 Bell</option><option value="none">🔇 None</option></select><button class="btn btn-outline" id="test-sound-btn" style="padding:10px 14px">▶</button></div></div>
+          <div class="setting-card"><div class="setting-info"><h3>Smart Scheduling</h3><p>Auto-adjust reminders based on weather &amp; habits</p></div><label class="toggle-switch"><input type="checkbox" id="smart-toggle" checked /><span class="toggle-slider"></span></label></div>
+          <div class="setting-card"><div class="setting-info"><h3>Watering Alerts</h3><p>Notify when plants are due for water</p></div><label class="toggle-switch"><input type="checkbox" id="water-notif-toggle" checked /><span class="toggle-slider"></span></label></div>
+          <div class="setting-card"><div class="setting-info"><h3>Fertilizer Alerts</h3><p>Notify on fertilizer schedule</p></div><label class="toggle-switch"><input type="checkbox" id="fert-notif-toggle" checked /><span class="toggle-slider"></span></label></div>
+          <div class="setting-card"><div class="setting-info"><h3>Vibration</h3><p>Vibrate device when a reminder fires</p></div><label class="toggle-switch"><input type="checkbox" id="vibration-toggle" checked /><span class="toggle-slider"></span></label></div>
+          <div class="setting-card" id="vibration-duration-card"><div class="setting-info"><h3>Vibration Pattern</h3><p>How long each vibration pulse lasts</p></div><select id="vibration-pattern" class="form-input" style="width:160px"><option value="short">Short (200ms × 3)</option><option value="medium" selected>Medium (500ms × 3)</option><option value="long">Long (1s × 3)</option><option value="sos">SOS (····–––····)</option></select></div>
+          <button class="btn btn-primary btn-full mt-lg" id="save-reminders">Save Preferences</button>
+        </div>
+        <div class="section-header mt-lg"><h2 class="section-title">Recent Alerts</h2><button class="btn-text" id="clear-log-btn">Clear all</button></div>
+        <div class="reminders-log" id="reminders-log"><div class="empty-state"><div class="empty-icon">🔔</div><p>No recent alerts</p></div></div>
+      </section>
+
+      <!-- ANALYTICS DASHBOARD (ITST 303 — Data Visualization) -->
+      <section class="page" id="page-analytics">
+        <div class="page-header">
+          <div><h1 class="page-title">📊 Analytics</h1><p class="page-subtitle">Care activity & plant health insights</p></div>
+          <button class="btn btn-outline" id="analytics-refresh-btn" onclick="Analytics.render()">↺ Refresh</button>
+        </div>
+        <div class="form-error hidden" id="analytics-error">Could not load analytics. Make sure the backend is running.</div>
+
+        <!-- Row 1: Care Activity Line Chart -->
+        <div class="analytics-card">
+          <div class="analytics-card-header">
+            <h3>📅 Daily Care Activity <span class="analytics-sub">(last 14 days)</span></h3>
+          </div>
+          <div class="chart-wrap" style="height:220px"><canvas id="chart-care-activity"></canvas></div>
+        </div>
+
+        <!-- Row 2: Locations Bar + Health Donut -->
+        <div class="analytics-row-2">
+          <div class="analytics-card analytics-card--half">
+            <div class="analytics-card-header"><h3>📍 Plants by Location</h3></div>
+            <div class="chart-wrap" style="height:200px"><canvas id="chart-locations"></canvas></div>
+          </div>
+          <div class="analytics-card analytics-card--half">
+            <div class="analytics-card-header"><h3>🤖 ML Health Distribution</h3></div>
+            <div class="chart-wrap" style="height:160px"><canvas id="chart-health-dist"></canvas></div>
+            <div id="health-legend" class="health-legend"></div>
+          </div>
+        </div>
+
+        <!-- Row 3: Missed Waterings -->
+        <div class="analytics-card">
+          <div class="analytics-card-header"><h3>💧 Missed Waterings by Plant</h3></div>
+          <div class="chart-wrap chart-wrap--dynamic" id="missed-wrap" style="height:200px"><canvas id="chart-missed"></canvas></div>
+        </div>
+      </section>
+
+      <!-- AI PLANT HEALTH (ITST 303 — ML Integration) -->
+      <section class="page" id="page-mlpredict">
+        <div class="page-header">
+          <div><h1 class="page-title">🤖 AI Plant Health</h1><p class="page-subtitle">Machine Learning health diagnosis & watering predictor</p></div>
+        </div>
+        <div class="ml-layout">
+
+          <!-- Input Form -->
+          <div class="ml-card">
+            <div class="ml-card-header">🌿 Plant Details</div>
+            <div class="form-group">
+              <label class="form-label">Plant Nickname</label>
+              <input type="text" id="ml-plant-name" class="form-input" placeholder="e.g. My Pothos" />
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label">Species</label>
+                <select id="ml-species" class="form-input"></select>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Location</label>
+                <select id="ml-location" class="form-input"></select>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Season</label>
+              <select id="ml-season" class="form-input"></select>
+            </div>
+          </div>
+
+          <div class="ml-card">
+            <div class="ml-card-header">🌡️ Environment & Conditions</div>
+            <div class="ml-slider-group">
+              <label class="form-label">Temperature (°C): <span class="slider-out" id="ml-temp-out">28</span></label>
+              <input type="range" id="ml-temp" min="15" max="45" value="28" class="ml-slider" />
+            </div>
+            <div class="ml-slider-group">
+              <label class="form-label">Humidity (%): <span class="slider-out" id="ml-humidity-out">60</span></label>
+              <input type="range" id="ml-humidity" min="10" max="100" value="60" class="ml-slider" />
+            </div>
+            <div class="ml-slider-group">
+              <label class="form-label">Soil Moisture (%): <span class="slider-out" id="ml-soil-out">50</span></label>
+              <input type="range" id="ml-soil" min="0" max="100" value="50" class="ml-slider" />
+            </div>
+            <div class="ml-slider-group">
+              <label class="form-label">Light Hours/Day: <span class="slider-out" id="ml-light-out">6</span></label>
+              <input type="range" id="ml-light" min="1" max="14" value="6" class="ml-slider" />
+            </div>
+            <div class="ml-slider-group">
+              <label class="form-label">Days Since Last Watered: <span class="slider-out" id="ml-days-watered-out">3</span></label>
+              <input type="range" id="ml-days-watered" min="0" max="30" value="3" class="ml-slider" />
+            </div>
+            <div class="form-group" style="margin-top:12px">
+              <label class="form-label">Missed Waterings (total)</label>
+              <input type="number" id="ml-missed" class="form-input" value="0" min="0" max="20" style="width:100px" />
+            </div>
+            <div class="setting-card" style="margin-top:8px">
+              <div class="setting-info"><h3>Pot Has Drainage</h3><p>Does your pot have drainage holes?</p></div>
+              <label class="toggle-switch"><input type="checkbox" id="ml-drainage" checked /><span class="toggle-slider"></span></label>
+            </div>
+          </div>
+
+          <button class="btn btn-primary btn-full" id="ml-predict-btn">🔬 Predict Plant Health</button>
+
+          <!-- Result Box -->
+          <div class="ml-result hidden" id="ml-result">
+            <div class="ml-result-box" id="ml-result-box">
+              <div class="ml-result-top">
+                <span class="ml-result-icon" id="ml-result-icon">✅</span>
+                <div>
+                  <div class="ml-result-label" id="ml-result-label">Healthy</div>
+                  <div class="ml-result-score" id="ml-result-score">95% confidence</div>
+                </div>
+              </div>
+              <div class="ml-result-water" id="ml-result-water">💧 Water every 7 day(s)</div>
+            </div>
+
+            <div class="ml-section-title">Confidence Breakdown</div>
+            <div id="ml-confidence-bars" class="ml-conf-bars"></div>
+
+            <div class="ml-section-title">AI Recommendations</div>
+            <ul id="ml-advice" class="ml-advice-list"></ul>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- PROFILE -->
+      <section class="page" id="page-profile">
+        <div class="page-header"><h1 class="page-title">Profile</h1></div>
+        <div class="profile-card">
+          <div class="profile-avatar" id="profile-avatar">🌿</div>
+          <h2 class="profile-name" id="profile-name">—</h2>
+          <p class="profile-email" id="profile-email">—</p>
+          <div class="profile-rank" id="profile-rank">🌱 Seedling</div>
+        </div>
+        <div class="profile-stats">
+          <div class="pstat"><span class="pstat-value" id="p-stat-plants">0</span><span class="pstat-label">Plants</span></div>
+          <div class="pstat"><span class="pstat-value" id="p-stat-tasks">0</span><span class="pstat-label">Tasks Done</span></div>
+          <div class="pstat"><span class="pstat-value" id="p-stat-streak">0</span><span class="pstat-label">Day Streak</span></div>
+          <div class="pstat"><span class="pstat-value" id="p-stat-xp">0</span><span class="pstat-label">XP Points</span></div>
+        </div>
+        <div class="section-header"><h2 class="section-title">🏅 My Badges</h2><span class="badge" id="badges-count-badge">0 earned</span></div>
+        <div class="badges-showcase" id="badges-showcase"><p class="no-badges-msg">Complete tasks to earn your first badge!</p></div>
+        <div class="section-header"><h2 class="section-title">Settings</h2></div>
+        <div class="setting-card"><div class="setting-info"><h3>App Theme</h3><p>Choose your preferred look</p></div><select id="theme-select" class="form-input" style="width:120px"><option value="light">☀️ Light</option><option value="dark">🌙 Dark</option></select></div>
+        <div class="setting-card"><div class="setting-info"><h3>Install App</h3><p>Add to home screen for offline use</p></div><button class="btn btn-outline" id="install-btn">📲 Install</button></div>
+        <button class="btn btn-danger btn-full mt-lg" id="logout-profile-btn">Sign Out</button>
+      </section>
+
+    </main>
+  </div>
+
+  <!-- HAMBURGER BUTTON (mobile — opens sidebar) -->
+  <button class="hamburger-btn" id="hamburger-btn" aria-label="Open menu">
+    <span></span><span></span><span></span>
+  </button>
+  <!-- SIDEBAR OVERLAY -->
+  <div class="sidebar-overlay" id="sidebar-overlay"></div>
+
+  <!-- BOTTOM NAV (mobile — all 7 sections) -->
+  <nav class="bottom-nav" id="bottom-nav">
+    <a href="#" class="bnav-item" data-page="dashboard">
+      <span class="bnav-icon">🏡</span><span class="bnav-label">Home</span>
+    </a>
+    <a href="#" class="bnav-item" data-page="plants">
+      <span class="bnav-icon">🪴</span><span class="bnav-label">Plants</span>
+    </a>
+    <a href="#" class="bnav-item" data-page="schedule">
+      <span class="bnav-icon">📅</span><span class="bnav-label">Schedule</span>
+    </a>
+    <a href="#" class="bnav-item" data-page="doctor">
+      <span class="bnav-icon">🩺</span><span class="bnav-label">Doctor</span>
+    </a>
+    <a href="#" class="bnav-item" data-page="tips">
+      <span class="bnav-icon">📚</span><span class="bnav-label">Tips</span>
+    </a>
+    <a href="#" class="bnav-item" data-page="reminders">
+      <span class="bnav-icon">🔔</span><span class="bnav-label">Reminders</span>
+    </a>
+    <a href="#" class="bnav-item" data-page="analytics">
+      <span class="bnav-icon">📊</span><span class="bnav-label">Analytics</span>
+    </a>
+    <a href="#" class="bnav-item" data-page="mlpredict">
+      <span class="bnav-icon">🤖</span><span class="bnav-label">AI Health</span>
+    </a>
+    <a href="#" class="bnav-item" data-page="profile">
+      <span class="bnav-icon">👤</span><span class="bnav-label">Profile</span>
+    </a>
+  </nav>
+
+  <!-- ADD PLANT MODAL -->
+  <div class="modal-overlay" id="modal-add-plant">
+    <div class="modal">
+      <div class="modal-header"><h2 class="modal-title">Add New Plant</h2><button class="modal-close" id="close-add-plant">✕</button></div>
+      <div class="modal-body">
+        <div class="offline-add-note" id="offline-add-note" style="display:none;background:var(--warn-100);color:#78350f;padding:10px 14px;border-radius:8px;font-size:.85rem;margin-bottom:12px;">📡 You're offline — plant will be saved locally and synced when connected.</div>
+        <div class="form-group"><label class="form-label">Plant Name *</label><input type="text" id="plant-name" class="form-input" placeholder="e.g. Peace Lily" /></div>
+        <div class="form-group"><label class="form-label">Species (optional)</label><input type="text" id="plant-species" class="form-input" placeholder="e.g. Spathiphyllum" /></div>
+        <div class="form-row">
+          <div class="form-group"><label class="form-label">Water Every</label><select id="plant-water-freq" class="form-input"><option value="1">Every day</option><option value="2">Every 2 days</option><option value="3" selected>Every 3 days</option><option value="5">Every 5 days</option><option value="7">Weekly</option><option value="14">Bi-weekly</option></select></div>
+          <div class="form-group"><label class="form-label">Fertilize Every</label><select id="plant-fert-freq" class="form-input"><option value="7">Weekly</option><option value="14" selected>Bi-weekly</option><option value="30">Monthly</option><option value="60">Every 2 months</option></select></div>
+        </div>
+        <div class="form-group"><label class="form-label">Location</label><input type="text" id="plant-location" class="form-input" placeholder="e.g. Living Room, Balcony" /></div>
+        <div class="form-group"><label class="form-label">Plant Emoji</label>
+          <div class="emoji-picker" id="emoji-picker">
+            <span class="emoji-opt selected" data-emoji="🪴">🪴</span><span class="emoji-opt" data-emoji="🌿">🌿</span><span class="emoji-opt" data-emoji="🌱">🌱</span><span class="emoji-opt" data-emoji="🌺">🌺</span><span class="emoji-opt" data-emoji="🌻">🌻</span><span class="emoji-opt" data-emoji="🌸">🌸</span><span class="emoji-opt" data-emoji="🌵">🌵</span><span class="emoji-opt" data-emoji="🎋">🎋</span><span class="emoji-opt" data-emoji="🍀">🍀</span><span class="emoji-opt" data-emoji="🌾">🌾</span>
+          </div>
+        </div>
+        <div class="form-group"><label class="form-label">Notes</label><textarea id="plant-notes" class="form-input form-textarea" placeholder="Any care notes…"></textarea></div>
+        <div id="add-plant-error" class="form-error hidden"></div>
+      </div>
+      <div class="modal-footer"><button class="btn btn-outline" id="cancel-add-plant">Cancel</button><button class="btn btn-primary" id="save-plant">Add Plant</button></div>
+    </div>
+  </div>
+
+  <!-- PLANT DETAIL MODAL -->
+  <div class="modal-overlay" id="modal-plant-detail">
+    <div class="modal modal--detail">
+      <div class="modal-header">
+        <div class="plant-detail-header"><span class="plant-detail-emoji" id="detail-emoji">🪴</span><div><h2 class="modal-title" id="detail-name">Plant Name</h2><p class="detail-species" id="detail-species">Species</p></div></div>
+        <button class="modal-close" id="close-plant-detail">✕</button>
+      </div>
+      <div class="modal-body">
+        <div class="detail-badges" id="detail-badges"></div>
+        <div class="detail-grid">
+          <div class="detail-item"><span class="detail-icon">💧</span><div><span class="detail-label">Water Frequency</span><span class="detail-value" id="detail-water-freq">—</span></div></div>
+          <div class="detail-item"><span class="detail-icon">🌿</span><div><span class="detail-label">Fertilize Frequency</span><span class="detail-value" id="detail-fert-freq">—</span></div></div>
+          <div class="detail-item"><span class="detail-icon">📍</span><div><span class="detail-label">Location</span><span class="detail-value" id="detail-location">—</span></div></div>
+          <div class="detail-item"><span class="detail-icon">📅</span><div><span class="detail-label">Added</span><span class="detail-value" id="detail-added">—</span></div></div>
+        </div>
+        <div class="detail-notes-wrap" id="detail-notes-wrap"><h4>Notes</h4><p id="detail-notes" class="detail-notes-text">—</p></div>
+        <div class="detail-actions"><button class="btn btn-care btn-water" id="detail-water-btn">💧 Water Now</button><button class="btn btn-care btn-fert" id="detail-fert-btn">🌿 Fertilize Now</button></div>
+      </div>
+      <div class="modal-footer"><button class="btn btn-danger-outline" id="detail-delete-btn">Delete Plant</button><button class="btn btn-outline" id="close-plant-detail-2">Close</button></div>
+    </div>
+  </div>
+
+  <!-- BADGE UNLOCK POPUP -->
+  <div class="badge-popup hidden" id="badge-popup">
+    <div class="badge-popup-inner">
+      <div class="badge-popup-sparkles">✨</div>
+      <div class="badge-popup-icon" id="badge-popup-icon">🏅</div>
+      <div class="badge-popup-label">Badge Unlocked!</div>
+      <div class="badge-popup-name" id="badge-popup-name"></div>
+      <div class="badge-popup-desc" id="badge-popup-desc"></div>
+      <button class="btn btn-primary" id="badge-popup-close" style="margin-top:16px;width:100%">Awesome! 🎉</button>
+    </div>
+  </div>
+
+  <!-- ADVANCED NOTIFICATION TOAST -->
+  <div class="notif-toast hidden" id="notif-toast">
+    <div class="notif-toast-body">
+      <span class="notif-toast-icon" id="notif-toast-icon">🔔</span>
+      <div class="notif-toast-text"><strong id="notif-toast-title"></strong><span id="notif-toast-msg"></span></div>
+    </div>
+    <div class="notif-toast-actions">
+      <button class="notif-btn notif-btn-done" id="notif-done-btn">✓ Done</button>
+      <button class="notif-btn notif-btn-snooze" id="notif-snooze-btn">⏱ Snooze</button>
+      <button class="notif-btn notif-btn-close" id="notif-close-btn">✕</button>
+    </div>
+  </div>
+
+  <!-- LOGOUT CONFIRM MODAL -->
+  <div class="modal-overlay" id="modal-logout-confirm">
+    <div class="modal" style="max-width:380px">
+      <div class="modal-header"><h2 class="modal-title">Sign Out</h2></div>
+      <div class="modal-body">
+        <div style="text-align:center;padding:12px 0">
+          <div style="font-size:3rem;margin-bottom:14px">👋</div>
+          <p style="font-size:1rem;color:var(--text-secondary);line-height:1.6">Are you sure you want to sign out of PlantCare? Your plant data will be saved.</p>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-outline" id="logout-cancel-btn" style="flex:1">Cancel</button>
+        <button class="btn btn-danger" id="logout-confirm-btn" style="flex:1">Yes, Sign Out</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="toast" id="toast"></div>
+
+  <!-- Chart.js for Data Visualization (ITST 303) -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+  <!-- API_BASE: auto-detects same-origin. Override here for split deployments.
+       Example: <script>window.API_BASE = 'https://api.yourdomain.com';</script> -->
+  <script>
+    // Auto-detect: same origin means Nginx proxies /api → FastAPI backend.
+    // If frontend is on a different domain than backend, set API_BASE explicitly.
+    window.API_BASE = window.API_BASE || window.location.origin;
+  </script>
+  <script src="db.js"></script>
+  <script src="auth.js"></script>
+  <script src="gamification.js"></script>
+  <script src="plants.js"></script>
+  <script src="schedule.js"></script>
+  <script src="doctor.js"></script>
+  <script src="tips.js"></script>
+  <script src="notifications.js"></script>
+  <script src="analytics.js"></script>
+  <script src="ml_predict.js"></script>
+  <script src="router.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

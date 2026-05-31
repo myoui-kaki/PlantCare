@@ -1,0 +1,116 @@
+/* =====================================================
+   PLANTCARE PWA — animations.css
+   Keyframes and transition effects
+   ===================================================== */
+
+@keyframes pageFadeIn {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes floatLeaves {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50%       { transform: translateY(-10px) rotate(3deg); }
+}
+
+@keyframes spinIn {
+  from { opacity: 0; transform: scale(.8) rotate(-10deg); }
+  to   { opacity: 1; transform: scale(1) rotate(0deg); }
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: .6; }
+}
+
+@keyframes shimmer {
+  0%   { background-position: -200% 0; }
+  100% { background-position:  200% 0; }
+}
+
+/* Card stagger on page load */
+.plant-card, .task-item, .stat-card, .setting-card, .schedule-item {
+  animation: slideUp .35s ease both;
+}
+.plant-card:nth-child(1)  { animation-delay: .05s; }
+.plant-card:nth-child(2)  { animation-delay: .10s; }
+.plant-card:nth-child(3)  { animation-delay: .15s; }
+.plant-card:nth-child(4)  { animation-delay: .20s; }
+.plant-card:nth-child(5)  { animation-delay: .25s; }
+.plant-card:nth-child(6)  { animation-delay: .30s; }
+
+.stat-card:nth-child(1) { animation-delay: .04s; }
+.stat-card:nth-child(2) { animation-delay: .10s; }
+.stat-card:nth-child(3) { animation-delay: .16s; }
+
+/* Skeleton loading shimmer */
+.skeleton {
+  background: linear-gradient(90deg, var(--border) 25%, var(--green-100) 50%, var(--border) 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.4s infinite;
+  border-radius: var(--radius-sm);
+}
+
+/* Logo spin on load */
+.sidebar-logo .logo-leaf {
+  animation: spinIn .6s cubic-bezier(.34,1.56,.64,1);
+}
+
+/* Notification bell shake */
+@keyframes bellShake {
+  0%, 100% { transform: rotate(0); }
+  20%       { transform: rotate(15deg); }
+  40%       { transform: rotate(-12deg); }
+  60%       { transform: rotate(8deg); }
+  80%       { transform: rotate(-5deg); }
+}
+.bell-shake { animation: bellShake .5s ease; }
+
+/* Water droplet bounce */
+@keyframes dropBounce {
+  0%   { transform: scale(1); }
+  30%  { transform: scale(1.3); }
+  60%  { transform: scale(.9); }
+  100% { transform: scale(1); }
+}
+.watered { animation: dropBounce .4s ease; }
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *, ::before, ::after {
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .01ms !important;
+  }
+}
+
+/* ── New Feature Animations ── */
+@keyframes badgePopIn {
+  from { opacity: 0; transform: scale(0.5) rotate(-10deg); }
+  to   { opacity: 1; transform: scale(1) rotate(0deg); }
+}
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(-8px); }
+}
+@keyframes xpFill {
+  from { width: 0%; }
+}
+@keyframes doctorSlideIn {
+  from { opacity: 0; transform: translateX(-20px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+.doctor-results { animation: slideUp .4s ease; }
+.diag-item { animation: doctorSlideIn .35s ease both; }
+.diag-item:nth-child(1) { animation-delay: .05s; }
+.diag-item:nth-child(2) { animation-delay: .12s; }
+.diag-item:nth-child(3) { animation-delay: .19s; }
+.tip-card { animation: slideUp .3s ease both; }
+.tip-card:nth-child(odd)  { animation-delay: .05s; }
+.tip-card:nth-child(even) { animation-delay: .10s; }
+.badge-card.earned { animation: spinIn .4s cubic-bezier(.34,1.56,.64,1); }

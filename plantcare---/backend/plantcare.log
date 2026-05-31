@@ -1,0 +1,37 @@
+2026-05-16 22:58:06,778 [INFO] plantcare - ML models loaded successfully
+2026-05-16 22:58:06,908 [INFO] plantcare - Database initialized
+2026-05-16 22:58:06,913 [INFO] plantcare - PlantCare API started
+2026-05-17 00:08:18,874 [INFO] plantcare - PlantCare API shutting down
+2026-05-17 00:08:42,210 [INFO] plantcare - ML models loaded successfully
+2026-05-17 00:08:42,228 [INFO] plantcare - Database initialized
+2026-05-17 00:08:42,228 [INFO] plantcare - PlantCare API started
+2026-05-17 00:26:46,159 [INFO] plantcare - PlantCare API shutting down
+2026-05-17 00:26:59,451 [INFO] plantcare - ML models loaded successfully
+2026-05-17 00:26:59,474 [INFO] plantcare - Database initialized
+2026-05-17 00:26:59,475 [INFO] plantcare - PlantCare API started
+2026-05-17 00:30:35,443 [INFO] plantcare - New user registered: u_42fe09b646c4
+2026-05-17 01:03:37,436 [INFO] plantcare - PlantCare API shutting down
+2026-05-17 01:04:07,512 [INFO] plantcare - ML models loaded successfully
+2026-05-17 01:04:07,537 [INFO] plantcare - Database initialized
+2026-05-17 01:04:07,537 [INFO] plantcare - PlantCare API started
+2026-05-17 01:05:21,007 [INFO] plantcare - New user registered: u_bfdaf68db165
+2026-05-17 18:41:50,611 [INFO] plantcare - ML models loaded successfully
+2026-05-17 18:41:50,636 [INFO] plantcare - Database initialized
+2026-05-17 18:41:50,638 [INFO] plantcare - PlantCare API started
+2026-05-17 18:42:34,666 [INFO] plantcare - New user registered: u_ac15625eeb56
+2026-05-17 21:32:43,749 [INFO] plantcare - ML models loaded successfully
+2026-05-17 21:32:43,770 [INFO] plantcare - Database initialized
+2026-05-17 21:32:43,770 [INFO] plantcare - PlantCare API started
+2026-05-17 21:33:44,235 [INFO] plantcare - New user registered: u_659606a435fe
+2026-05-17 21:34:48,767 [INFO] plantcare - New user registered: u_693c13fc7829
+2026-05-17 21:36:42,863 [INFO] plantcare - PlantCare API shutting down
+2026-05-17 21:37:26,184 [INFO] plantcare - ML models loaded successfully
+2026-05-17 21:37:26,191 [INFO] plantcare - Database initialized
+2026-05-17 21:37:26,191 [INFO] plantcare - PlantCare API started
+2026-05-17 21:38:08,762 [INFO] plantcare - New user registered: u_08ee4e6ef15d
+2026-05-17 21:38:14,853 [INFO] plantcare - ML prediction: Healthy (79.5%) for plant 'My Plant'
+2026-05-17 21:43:08,920 [INFO] plantcare - New user registered: u_397630b14018
+2026-05-17 21:43:27,773 [INFO] plantcare - ML prediction: Healthy (79.5%) for plant 'My Plant'
+2026-05-17 21:46:21,555 [INFO] plantcare - New user registered: u_204a7414baa1
+2026-05-17 21:46:32,096 [INFO] plantcare - ML prediction: Healthy (79.5%) for plant 'My Plant'
+2026-05-17 21:46:54,761 [INFO] plantcare - Plant added: p_23727f15fe00 by user u_204a7414baa1

@@ -1,0 +1,280 @@
+/* =====================================================
+   PLANTCARE — additions.css
+   Styles for Analytics Dashboard + ML Predict pages
+   (ITST 303 requirements)
+===================================================== */
+
+/* ── Analytics ─────────────────────────────────────── */
+.analytics-card {
+  background: var(--surface, #fff);
+  border: 1px solid var(--border, #e8f5e9);
+  border-radius: 16px;
+  padding: 18px 20px;
+  margin-bottom: 16px;
+  box-shadow: 0 1px 4px rgba(0,0,0,.04);
+}
+.analytics-card-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 14px;
+}
+.analytics-card-header h3 {
+  font-size: .95rem;
+  font-weight: 600;
+  color: var(--text-primary, #1b4332);
+  margin: 0;
+}
+.analytics-sub {
+  font-size: .75rem;
+  font-weight: 400;
+  color: var(--text-muted, #888);
+  margin-left: 4px;
+}
+.analytics-row-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+@media (max-width: 600px) {
+  .analytics-row-2 { grid-template-columns: 1fr; }
+}
+.chart-wrap { position: relative; width: 100%; }
+.analytics-empty {
+  text-align: center;
+  color: var(--text-muted, #888);
+  font-size: .85rem;
+  padding: 20px 0;
+}
+.health-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 10px;
+  justify-content: center;
+}
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: .82rem;
+  color: var(--text-secondary, #444);
+}
+.legend-dot {
+  width: 10px; height: 10px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+/* ── ML Predict ─────────────────────────────────────── */
+.ml-layout {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding-bottom: 80px;
+}
+.ml-card {
+  background: var(--surface, #fff);
+  border: 1px solid var(--border, #e8f5e9);
+  border-radius: 16px;
+  padding: 18px 20px;
+  box-shadow: 0 1px 4px rgba(0,0,0,.04);
+}
+.ml-card-header {
+  font-size: .9rem;
+  font-weight: 600;
+  color: var(--primary, #2d6a4f);
+  margin-bottom: 14px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--border, #e8f5e9);
+}
+.ml-slider-group {
+  margin-bottom: 14px;
+}
+.ml-slider-group .form-label {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 6px;
+}
+.slider-out {
+  font-weight: 600;
+  color: var(--primary, #2d6a4f);
+  min-width: 28px;
+  text-align: right;
+}
+.ml-slider {
+  width: 100%;
+  accent-color: var(--primary, #2d6a4f);
+  cursor: pointer;
+}
+
+/* ── ML Result ──────────────────────────────────────── */
+.ml-result {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.ml-result.hidden { display: none; }
+.ml-result-box {
+  border: 2px solid #52b788;
+  border-radius: 16px;
+  padding: 18px 20px;
+  background: #d8f3dc;
+  transition: background .3s, border-color .3s;
+}
+.ml-result-top {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 10px;
+}
+.ml-result-icon { font-size: 2.4rem; }
+.ml-result-label {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--text-primary, #1b4332);
+}
+.ml-result-score {
+  font-size: .82rem;
+  color: var(--text-muted, #555);
+  margin-top: 2px;
+}
+.ml-result-water {
+  font-size: .92rem;
+  font-weight: 600;
+  color: var(--primary, #2d6a4f);
+  background: rgba(255,255,255,.55);
+  padding: 8px 12px;
+  border-radius: 8px;
+  display: inline-block;
+}
+.ml-section-title {
+  font-size: .85rem;
+  font-weight: 600;
+  color: var(--text-muted, #888);
+  text-transform: uppercase;
+  letter-spacing: .05em;
+  margin-top: 4px;
+}
+.ml-conf-bars {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  background: var(--surface, #fff);
+  border: 1px solid var(--border, #e8f5e9);
+  border-radius: 12px;
+  padding: 14px 16px;
+}
+.conf-bar-row {
+  display: grid;
+  grid-template-columns: 120px 1fr 42px;
+  align-items: center;
+  gap: 10px;
+}
+.conf-label {
+  font-size: .82rem;
+  color: var(--text-secondary, #444);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.conf-bar-wrap {
+  height: 10px;
+  background: var(--surface-2, #f1f8f4);
+  border-radius: 99px;
+  overflow: hidden;
+}
+.conf-bar-fill {
+  height: 100%;
+  border-radius: 99px;
+  transition: width .6s ease;
+}
+.conf-pct {
+  font-size: .8rem;
+  font-weight: 600;
+  text-align: right;
+  color: var(--text-secondary, #444);
+}
+.ml-advice-list {
+  list-style: none;
+  padding: 0; margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  background: var(--surface, #fff);
+  border: 1px solid var(--border, #e8f5e9);
+  border-radius: 12px;
+  padding: 14px 16px;
+}
+.advice-item {
+  font-size: .88rem;
+  color: var(--text-secondary, #444);
+  line-height: 1.5;
+  padding-left: 4px;
+}
+
+/* ── Dark Mode Overrides ─────────────────────────────── */
+[data-theme="dark"] .analytics-card,
+[data-theme="dark"] .ml-card,
+[data-theme="dark"] .ml-conf-bars,
+[data-theme="dark"] .ml-advice-list {
+  background: var(--bg-card, #1a2e23);
+  border-color: var(--border, #2d4a38);
+  box-shadow: 0 1px 6px rgba(0,0,0,.3);
+}
+
+[data-theme="dark"] .analytics-card-header h3,
+[data-theme="dark"] .ml-result-label {
+  color: var(--text-primary, #e8f5e9);
+}
+
+[data-theme="dark"] .ml-card-header {
+  color: #74c69d;
+  border-bottom-color: var(--border, #2d4a38);
+}
+
+[data-theme="dark"] .ml-result-box {
+  background: #0d2e1a !important;
+  border-color: #2d6a4f !important;
+}
+
+[data-theme="dark"] .ml-result-label {
+  color: #d8f3dc !important;
+}
+
+[data-theme="dark"] .ml-result-score {
+  color: #95d5b2 !important;
+}
+
+/* Override the inline styles set by JS for each health status */
+[data-theme="dark"] #ml-result-box {
+  background: #0d2e1a !important;
+  border-color: #2d6a4f !important;
+}
+
+[data-theme="dark"] .ml-result-water {
+  background: rgba(0,0,0,.3);
+  color: #74c69d;
+}
+
+[data-theme="dark"] .ml-result-score,
+[data-theme="dark"] .ml-section-title,
+[data-theme="dark"] .conf-label,
+[data-theme="dark"] .conf-pct,
+[data-theme="dark"] .advice-item,
+[data-theme="dark"] .legend-item {
+  color: #a8d5b5;
+}
+
+[data-theme="dark"] .conf-bar-wrap {
+  background: #1a3326;
+}
+
+[data-theme="dark"] .analytics-sub {
+  color: #6aab87;
+}
+
+[data-theme="dark"] .chart-wrap canvas {
+  filter: brightness(0.9);
+}

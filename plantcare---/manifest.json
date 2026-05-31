@@ -1,0 +1,32 @@
+{
+  "name": "PlantCare — Reminder App",
+  "short_name": "PlantCare",
+  "description": "Smart plant care with AI Doctor, gamification, and care tips.",
+  "start_url": "./index.html",
+  "id": "./index.html",
+  "display": "standalone",
+  "display_override": ["standalone", "fullscreen", "minimal-ui", "browser"],
+  "background_color": "#1b4332",
+  "theme_color": "#2d6a4f",
+  "orientation": "any",
+  "categories": ["lifestyle", "utilities", "health"],
+  "lang": "en",
+  "prefer_related_applications": false,
+  "scope": "./",
+  "handle_links": "preferred",
+  "edge_side_panel": { "preferred_width": 400 },
+  "icons": [
+    { "src": "icons/icon-72.svg",  "sizes": "72x72",   "type": "image/svg+xml", "purpose": "any" },
+    { "src": "icons/icon-192.svg", "sizes": "192x192", "type": "image/svg+xml", "purpose": "any maskable" },
+    { "src": "icons/icon-512.svg", "sizes": "512x512", "type": "image/svg+xml", "purpose": "any maskable" }
+  ],
+  "screenshots": [
+    { "src": "icons/icon-512.svg", "sizes": "512x512", "type": "image/svg+xml", "form_factor": "narrow", "label": "PlantCare Dashboard" },
+    { "src": "icons/icon-512.svg", "sizes": "512x512", "type": "image/svg+xml", "form_factor": "wide",   "label": "PlantCare Desktop" }
+  ],
+  "shortcuts": [
+    { "name": "Plant Doctor", "url": "./index.html#doctor", "icons": [{ "src": "icons/icon-72.svg", "sizes": "72x72" }] },
+    { "name": "Add Plant",    "url": "./index.html#plants",  "icons": [{ "src": "icons/icon-72.svg", "sizes": "72x72" }] },
+    { "name": "Care Tips",    "url": "./index.html#tips",    "icons": [{ "src": "icons/icon-72.svg", "sizes": "72x72" }] }
+  ]
+}
